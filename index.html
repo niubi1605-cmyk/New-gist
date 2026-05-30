@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>本地素材收藏站</title>
+    <title>本地素材收藏站（带搜索修复版）</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
         body{background:#f5f5f5;padding:15px;font-family:system-ui, sans-serif;}
         .top-bar{display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
-        #search{flex:1;min-width:200px;padding:8px 12px;border:1px solid #ccc;border-radius:4px;outline:none;}
-        .btn{padding:8px 16px;border:none;border-radius:4px;background:#2196F3;color:#fff;cursor:pointer;}
+        /* 搜索框高亮显示 */
+        #search{flex:1;min-width:200px;padding:12px 15px;border:2px solid #2196F3;border-radius:8px;outline:none;font-size:16px;}
+        #search::placeholder{color:#999;}
+        .btn{padding:10px 18px;border:none;border-radius:6px;background:#2196F3;color:#fff;cursor:pointer;font-size:15px;}
         .btn:hover{background:#1976D2;}
-        .tag-input{padding:8px;border:1px solid #ccc;border-radius:4px;width:180px;}
+        .tag-input{padding:10px;border:1px solid #ccc;border-radius:6px;width:180px;font-size:15px;}
         .container{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:15px;}
         .item{background:#fff;padding:10px;border-radius:6px;box-shadow:0 2px 4px #ddd;cursor:pointer;}
         .item.selected{border:2px solid #2196F3;}
@@ -22,7 +24,8 @@
 </head>
 <body>
     <div class="top-bar">
-        <input type="text" id="search" placeholder="搜索关键词 或 #标签">
+        <!-- 高亮的搜索框，你一眼就能看到 -->
+        <input type="text" id="search" placeholder="🔍 输入关键词 或 #标签 搜索">
         <input type="text" class="tag-input" id="batchTag" placeholder="批量添加标签">
         <button class="btn" id="addTagBtn">选中项添加标签</button>
     </div>
@@ -30,30 +33,28 @@
     <div class="container" id="container"></div>
 
     <script>
-        // 适配你手机的路径
-        const VIDEO_BASE = "/storage/emulated/0/本地视频/";
-        const IMAGE_BASE = "/storage/emulated/0/本地照片/";
+        // 示例素材（包含你截图里的视频）
+        let mediaList = [
+            { 
+                src: "/storage/emulated/0/本地视频/小女友穿黑丝，.ts.mp4", 
+                type: "video", 
+                tags: [] 
+            }
+        ];
 
-        // 初始化：从本地存储读取数据，或新建
-        let mediaList = JSON.parse(localStorage.getItem('mediaData')) || [];
         let selectedList = [];
         const container = document.getElementById('container');
         const searchInput = document.getElementById('search');
         const batchTag = document.getElementById('batchTag');
         const addTagBtn = document.getElementById('addTagBtn');
 
-        // ========== 关键：手动添加素材路径 ==========
-        // 你后续新增文件，在这里按格式补充即可
-        // 示例：
-        // mediaList.push(
-        //   { src: IMAGE_BASE + "照片1.jpg", type: "image", tags: [] },
-        //   { src: VIDEO_BASE + "视频1.mp4", type: "video", tags: [] }
-        // );
-        // =========================================
-
-        // 渲染素材列表
+        // 渲染列表
         function render(list){
             container.innerHTML = '';
+            if(list.length === 0){
+                container.innerHTML = '<p style="color:#999;text-align:center;padding:30px;">暂无素材，可在代码里添加文件路径</p>';
+                return;
+            }
             list.forEach((item, idx) => {
                 const div = document.createElement('div');
                 div.className = 'item';
@@ -67,7 +68,6 @@
                 let tagHtml = item.tags.map(t => `<span class="tag">#${t}</span>`).join('');
                 div.innerHTML = `${mediaDom}<div class="tags">${tagHtml}</div>`;
 
-                // 选中/取消选中（仅本地标记，不影响文件）
                 div.onclick = () => {
                     if(selectedList.includes(idx)){
                         selectedList = selectedList.filter(i=>i!==idx);
@@ -81,12 +81,12 @@
             });
         }
 
-        // 保存标签数据到浏览器本地存储（不会修改文件）
+        // 保存标签数据
         function saveData(){
             localStorage.setItem('mediaData', JSON.stringify(mediaList));
         }
 
-        // 批量添加标签（仅存到本地存储，不修改文件）
+        // 批量加标签
         addTagBtn.addEventListener('click', ()=>{
             const tag = batchTag.value.trim();
             if(!tag || selectedList.length === 0) return;
@@ -101,23 +101,32 @@
             selectedList = [];
         });
 
-        // 双模式搜索：关键词 / #标签
-        searchInput.addEventListener('input', e => {
+        // 【修复版】搜索功能，实时生效
+        searchInput.addEventListener('input', (e) => {
             const key = e.target.value.trim().toLowerCase();
-            if(!key) return render(mediaList);
-            let res = [];
+            if(!key){
+                // 清空搜索，恢复全部
+                render(mediaList);
+                return;
+            }
+            let result = [];
             if(key.startsWith('#')){
-                const t = key.slice(1);
-                res = mediaList.filter(item => item.tags.some(tag=>tag.includes(t)));
+                // 标签搜索，支持模糊匹配
+                const targetTag = key.slice(1);
+                result = mediaList.filter(item => 
+                    item.tags.some(tag => tag.toLowerCase().includes(targetTag))
+                );
             }else{
-                res = mediaList.filter(item => 
-                    item.src.toLowerCase().includes(key) || item.tags.some(tag=>tag.includes(key))
+                // 关键词搜索，匹配文件名和标签
+                result = mediaList.filter(item => 
+                    item.src.toLowerCase().includes(key) || 
+                    item.tags.some(tag => tag.toLowerCase().includes(key))
                 );
             }
-            render(res);
+            render(result);
         });
 
-        // 初始化渲染
+        // 初始化加载
         render(mediaList);
     </script>
 </body>
