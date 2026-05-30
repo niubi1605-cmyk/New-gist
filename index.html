@@ -1,133 +1,113 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>本地素材收藏站（带搜索修复版）</title>
-    <style>
-        *{margin:0;padding:0;box-sizing:border-box;}
-        body{background:#f5f5f5;padding:15px;font-family:system-ui, sans-serif;}
-        .top-bar{display:flex;gap:10px;align-items:center;margin-bottom:20px;flex-wrap:wrap;}
-        /* 搜索框高亮显示 */
-        #search{flex:1;min-width:200px;padding:12px 15px;border:2px solid #2196F3;border-radius:8px;outline:none;font-size:16px;}
-        #search::placeholder{color:#999;}
-        .btn{padding:10px 18px;border:none;border-radius:6px;background:#2196F3;color:#fff;cursor:pointer;font-size:15px;}
-        .btn:hover{background:#1976D2;}
-        .tag-input{padding:10px;border:1px solid #ccc;border-radius:6px;width:180px;font-size:15px;}
-        .container{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:15px;}
-        .item{background:#fff;padding:10px;border-radius:6px;box-shadow:0 2px 4px #ddd;cursor:pointer;}
-        .item.selected{border:2px solid #2196F3;}
-        .media{width:100%;height:140px;object-fit:cover;border-radius:4px;margin-bottom:8px;}
-        .tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px;}
-        .tag{background:#e3f2fd;padding:2px 6px;border-radius:3px;font-size:12px;color:#1976D2;}
-    </style>
-</head>
+    <title>黑猫软件库 - 牢记官网</title>
+    <link rel="stylesheet" href="static/css/index.css">
+<style type="text/css" id="__via_marker__"></style></head>
 <body>
-    <div class="top-bar">
-        <!-- 高亮的搜索框，你一眼就能看到 -->
-        <input type="text" id="search" placeholder="🔍 输入关键词 或 #标签 搜索">
-        <input type="text" class="tag-input" id="batchTag" placeholder="批量添加标签">
-        <button class="btn" id="addTagBtn">选中项添加标签</button>
+    <div id="app" data-v-app="">
+        <div class="nav-box md:max-w-[400px] w-full text-center pr-6 pl-6">
+            <div class="animate__animated animate__flipInX ring-1 ring-slate-900/10 rounded py-5 px-4">
+                <div mifun="" class="mb-6"><img mifun="" class="main-img" src="static/picture/未命名图片.png" alt="" sizes="" srcset="">
+                    <h1 mifun="" class="text-lg font-semibold">黑猫软件库永久发布页🎉</h1>
+                    <p mifun="" class="text-xs text-slate-500">https://anonymiz.com/0000</p>
+                    <p mifun="" class="text-xs text-slate-500">无法访问 开科学上网</p>
+                    <p mifun="" class="text-xs text-slate-500">防丢失，请务必牢记域名哦～</p>
+                    <p mifun="" class="text-xs text-slate-500">黑猫软件库·软件改变生活！</p>
+                </div>
+                <div mifun="" class="w-full flex justify-center items-center bg-slate-400/10 rounded py-2 px-2 shadow-inner mb-5" style="background-color: rgba(148, 163, 184, 0.1)!important;">
+                    <div id="android" class="bgswhite shadow-sm link flex-1 rounded py-2 px-2 text-sm" style="background-color: white;">安卓</div>
+                    <div id="ios" class="text-slate-500 link flex-1 text-sm py-2 px-2 rounded">不支持苹果端</div>
+                    <div id="tv" class="text-slate-500 link flex-1 text-sm py-2 px-2 rounded">不支持电脑端</div>
+                </div>
+                <div id="android-disp" mifuns="" mifun="" class="animate__animated animate__fadeIn" style="display: block;">
+                    <div mifuns="">
+                        <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/ammgg2">下载线路 - 壹<span mifuns="" class="ml-3">状态：🟢</span></a>
+                        <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/ammgg2">下载线路 - 贰<span mifuns="" class="ml-3">状态：🟢</span></a>
+                        <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/ammgg2">下载线路 - 叁<span mifuns="" class="ml-3">状态：🟢</span></a>
+                    </div>
+                    <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/ammgg2">三个路线都一样 随便一个<span mifuns="" class="ml-3"></span></a>
+                </div>
+                <div id="ios-disp" mifuns="" mifun="" class="animate__animated animate__fadeIn" style="display: none;">
+                    <div mifuns="">
+                        <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/ammgg2">没有<span mifuns="" class="ml-3">状态：🟢</span></a>
+                       <!-- <a MiFuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://apps.apple.com/cn/app/id6760451898">苹果商店备用下载<span MiFuns="" class="ml-3">状态：🟢
+</span></a>-->
+                        <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/yvypbc">不支持苹果端 只有安卓<span mifuns="" class="ml-3">状态：🟢
+</span></a>
+                    </div>
+                    <div mifuns="" class="ipa">
+                        <div mifuns="" class="ipa-title">
+                            <svg mifuns="" t="1697948721566" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4047" width="16" height="16">
+                                <path mifuns="" d="M511.950005 512.049995m-447.956254 0a447.956254 447.956254 0 1 0 895.912508 0 447.956254 447.956254 0 1 0-895.912508 0Z" fill="#20B759" p-id="4048"></path>
+                                <path mifuns="" d="M458.95518 649.636559L289.271751 479.95313c-11.698858-11.698858-30.697002-11.698858-42.39586 0s-11.698858 30.697002 0 42.395859l169.683429 169.68343c11.698858 11.698858 30.697002 11.698858 42.39586 0 11.798848-11.598867 11.798848-30.597012 0-42.39586z" fill="#FFFFFF" p-id="4049"></path>
+                                <path mifuns="" d="M777.62406 332.267552c-11.698858-11.698858-30.697002-11.698858-42.39586 0L424.158578 643.437164c-11.698858 11.698858-11.698858 30.697002 0 42.39586s30.697002 11.698858 42.39586 0l311.069622-311.069622c11.798848-11.798848 11.798848-30.796992 0-42.49585z" fill="#FFFFFF" p-id="4050"></path>
+                            </svg>
+                            <p mifuns="" class="ipa-title-font"><span mifuns="" style="color: rgb(55, 167, 55); margin-left: 3px;">免越狱</span>类iPA安装教程或工具下载</p>
+                        </div>
+                        <div mifuns="" class="ipa-box">
+                            <a href="https://www.bilibili.com/video/BV1Jg4y1n7hi/" target="_blank"><div mifuns="" class="ipa-item shadow" style="background-image: url(http://m.ykimg.com/05100000654BC6562C107A094A039730);"></div></a>
+                            <a href="https://www.bilibili.com/video/BV1yF411a7i4/" target="_blank"><div mifuns="" class="ipa-item shadow" style="background-image: url(http://m.ykimg.com/05100000654BC6772C107A0951083E4E);"></div></a>
+                            <a href="https://www.bilibili.com/video/BV1HN411q7M4/" target="_blank"><div mifuns="" class="ipa-item shadow" style="background-image: url(http://m.ykimg.com/05100000654BC6AE2C107A094E08A712);"></div></a>
+                            <a href="https://www.bilibili.com/video/BV1Tj411r7rb/" target="_blank"><div mifuns="" class="ipa-item shadow" style="background-image: url(http://m.ykimg.com/05100000654BC6D42C107A09500F28FF);"></div></a>
+                            <a href="https://www.bilibili.com/video/BV1jV41137BB/" target="_blank"><div mifuns="" class="ipa-item shadow" style="background-image: url(http://m.ykimg.com/05100000654BC6322C107A094908F5DD);"></div></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="tv-disp" mifuns="" mifun="" class="animate__animated animate__fadeIn" style="display: none;">
+                   <div mifuns="">
+                        <a mifuns="" class="text-xs mb-5 block bg-slate-900 rounded text-white w-full text-sm px-4 py-2" target="_blank" href="https://wwwa.qyshare.com:2083/s/ammgg2">没有电脑 支持安卓<span mifuns="" class="ml-3">状态：🟢</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 mt-8">Copyright © 2026 黑猫软件库 Team.</div>
+        </div>
     </div>
-
-    <div class="container" id="container"></div>
-
     <script>
-        // 示例素材（包含你截图里的视频）
-        let mediaList = [
-            { 
-                src: "/storage/emulated/0/本地视频/小女友穿黑丝，.ts.mp4", 
-                type: "video", 
-                tags: [] 
-            }
-        ];
+        document.addEventListener('DOMContentLoaded', function() {
+          var iosButton = document.getElementById('ios');
+          var androidButton = document.getElementById('android');
+          var tvButton = document.getElementById('tv'); 
+          var iOSDiv = document.getElementById('ios-disp');
+          var androidDiv = document.getElementById('android-disp');
+          var tvDiv = document.getElementById('tv-disp');
 
-        let selectedList = [];
-        const container = document.getElementById('container');
-        const searchInput = document.getElementById('search');
-        const batchTag = document.getElementById('batchTag');
-        const addTagBtn = document.getElementById('addTagBtn');
+          // 默认显示 iOS 内容，隐藏 Android 内容
+          iosButton.style.backgroundColor = '';
+          androidButton.style.backgroundColor = 'white';
+          iOSDiv.style.display = 'none';
+          androidDiv.style.display = 'block';
 
-        // 渲染列表
-        function render(list){
-            container.innerHTML = '';
-            if(list.length === 0){
-                container.innerHTML = '<p style="color:#999;text-align:center;padding:30px;">暂无素材，可在代码里添加文件路径</p>';
-                return;
-            }
-            list.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = 'item';
-                div.dataset.id = idx;
-                if(selectedList.includes(idx)) div.classList.add('selected');
+          // 点击 Android 按钮时切换显示内容和背景色
+          androidButton.addEventListener('click', function() {
+            iOSDiv.style.display = 'none';
+            tvDiv.style.display = 'none';
+            androidDiv.style.display = 'block';
+            iosButton.style.backgroundColor = '';
+            androidButton.style.backgroundColor = 'white';
+            tvButton.style.backgroundColor = '';
+          });
 
-                let mediaDom = item.type === 'video'
-                    ? `<video class="media" controls src="${item.src}"></video>`
-                    : `<img class="media" src="${item.src}" alt="">`;
+          // 点击 iOS 按钮时切换显示内容和背景色
+          iosButton.addEventListener('click', function() {
+            iOSDiv.style.display = 'block';
+            androidDiv.style.display = 'none';
+            tvDiv.style.display = 'none';
+            iosButton.style.backgroundColor = 'white';
+            androidButton.style.backgroundColor = '';
+            tvButton.style.backgroundColor = '';
+          });
 
-                let tagHtml = item.tags.map(t => `<span class="tag">#${t}</span>`).join('');
-                div.innerHTML = `${mediaDom}<div class="tags">${tagHtml}</div>`;
-
-                div.onclick = () => {
-                    if(selectedList.includes(idx)){
-                        selectedList = selectedList.filter(i=>i!==idx);
-                        div.classList.remove('selected');
-                    }else{
-                        selectedList.push(idx);
-                        div.classList.add('selected');
-                    }
-                };
-                container.appendChild(div);
-            });
-        }
-
-        // 保存标签数据
-        function saveData(){
-            localStorage.setItem('mediaData', JSON.stringify(mediaList));
-        }
-
-        // 批量加标签
-        addTagBtn.addEventListener('click', ()=>{
-            const tag = batchTag.value.trim();
-            if(!tag || selectedList.length === 0) return;
-            selectedList.forEach(id=>{
-                if(!mediaList[id].tags.includes(tag)){
-                    mediaList[id].tags.push(tag);
-                }
-            });
-            saveData();
-            render(mediaList);
-            batchTag.value = '';
-            selectedList = [];
+          // 点击 TV 按钮时切换显示内容和背景色
+          tvButton.addEventListener('click', function() {
+            iOSDiv.style.display = 'none';
+            androidDiv.style.display = 'none';
+            tvDiv.style.display = 'block';
+            iosButton.style.backgroundColor = '';
+            androidButton.style.backgroundColor = '';
+            tvButton.style.backgroundColor = 'white';
+          });
         });
+      </script>
 
-        // 【修复版】搜索功能，实时生效
-        searchInput.addEventListener('input', (e) => {
-            const key = e.target.value.trim().toLowerCase();
-            if(!key){
-                // 清空搜索，恢复全部
-                render(mediaList);
-                return;
-            }
-            let result = [];
-            if(key.startsWith('#')){
-                // 标签搜索，支持模糊匹配
-                const targetTag = key.slice(1);
-                result = mediaList.filter(item => 
-                    item.tags.some(tag => tag.toLowerCase().includes(targetTag))
-                );
-            }else{
-                // 关键词搜索，匹配文件名和标签
-                result = mediaList.filter(item => 
-                    item.src.toLowerCase().includes(key) || 
-                    item.tags.some(tag => tag.toLowerCase().includes(key))
-                );
-            }
-            render(result);
-        });
-
-        // 初始化加载
-        render(mediaList);
-    </script>
-</body>
-</html>
+<button style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; padding: 10px 18px; background: rgb(0, 122, 255); color: rgb(255, 255, 255); border: 0px; border-radius: 6px; font-size: 14px;">空</button></body></html>
