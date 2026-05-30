@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黑猫永久发布页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* 霸气深渊渐变背景 + 纹理质感 */
+            background: linear-gradient(160deg, #050202 0%, #120508 40%, #0a0710 70%, #030101 100%);
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 多层动态光晕 强化霸气氛围 */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(180, 20, 40, 0.2) 0%, transparent 75%);
+            top: -150px;
+            left: -150px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            animation: glow1 8s ease-in-out infinite alternate;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(25, 40, 90, 0.18) 0%, transparent 75%);
+            bottom: -200px;
+            right: -200px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: 0;
+            animation: glow2 9s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow1 {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.2); opacity: 1; }
+        }
+        @keyframes glow2 {
+            0% { transform: scale(1.1); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.9; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .title {
+            font-size: 44px;
+            letter-spacing: 14px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            /* 保留原有好看的渐变文字 */
+            background: linear-gradient(90deg, #ff2b4f, #29b6f6, #ff2b4f);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientText 3s linear infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 43, 79, 0.5));
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .subtitle {
+            font-size: 17px;
+            color: #a0a8b8;
+            letter-spacing: 8px;
+            margin-bottom: 85px;
+            opacity: 0.75;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 400px;
+            height: 95px;
+            background: linear-gradient(135deg, #1a0c10 0%, #100a18 100%);
+            border: 1px solid rgba(255, 60, 80, 0.35);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 10px;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 120, 140, 0.15), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover {
+            border-color: rgba(255, 43, 79, 0.8);
+            box-shadow: 
+                0 0 50px rgba(255, 43, 79, 0.45),
+                0 0 90px rgba(41, 182, 246, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:active {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 0 25px rgba(255, 43, 79, 0.5);
+        }
+
+        .footer {
+            margin-top: 65px;
+            color: #6c7280;
+            font-size: 13px;
+            letter-spacing: 3px;
+            opacity: 0.65;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">黑猫永久发布页</h1>
+        <div class="subtitle">BLACK CAT</div>
+
+        <button class="btn" onclick="window.location.href='https://你的跳转地址.com'">
+            最新链接
+        </button>
+
+        <div class="footer">永久常驻 · 全网直达</div>
+    </div>
+</body>
+</html>
